@@ -1,27 +1,29 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { counterAction } from "../Store/counter";
+import { privacyAction } from "../Store/privacy";
 
 function Control() {
   const number = useRef();
   const dispatch = useDispatch();
   function handelIncrementByOne() {
-    dispatch({ type: "INCREMENT_BY_ONE" });
+    dispatch(counterAction.incrementByOne());
   }
   function handelDecrementByOne() {
-    dispatch({ type: "DECREMENT_BY_ONE" });
+    dispatch(counterAction.decrementByOne());
   }
   function handelIncrement() {
     let num = Number(number.current.value);
     number.current.value = "";
-    dispatch({ type: "INCREMENT", payload: num });
+    dispatch(counterAction.increment(num));
   }
   function handelDecrement() {
     let num = Number(number.current.value);
     number.current.value = "";
-    dispatch({ type: "DECREMENT", payload: num });
+    dispatch(counterAction.decrement(num));
   }
   function handelPrivacyToggle() {
-    dispatch({ type: "PRIVACY TOGGLE" });
+    dispatch(privacyAction.toggle());
   }
   return (
     <>
